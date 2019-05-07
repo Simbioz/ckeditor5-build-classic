@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -28,6 +30,24 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 
+// SIMBIOZ CUSTOM ->>
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
+import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/fontbackgroundcolor';
+// <<- SIMBIOZ CUSTOM
+
+// SIMBIOZ CUSTOM ->>
+// Expose internal functions as public API, as suggested here (aarrgh!)...
+// https://github.com/ckeditor/ckeditor5/issues/997#issuecomment-384276499
+import viewToPlainText from '@ckeditor/ckeditor5-clipboard/src/utils/viewtoplaintext';
+
+window.viewToPlainText = viewToPlainText;
+// <<- SIMBIOZ CUSTOM
+
 export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
@@ -52,7 +72,17 @@ ClassicEditor.builtinPlugins = [
 	Paragraph,
 	PasteFromOffice,
 	Table,
-	TableToolbar
+	TableToolbar,
+
+	// SIMBIOZ CUSTOM ->>
+	Underline,
+	Strikethrough,
+	Subscript,
+	Superscript,
+	Alignment,
+	FontColor,
+	FontBackgroundColor
+	// <<- SIMBIOZ CUSTOM
 ];
 
 // Editor configuration.
@@ -90,5 +120,6 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
-	language: 'en'
+	language:
+		'en'
 };
